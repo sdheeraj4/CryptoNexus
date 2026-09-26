@@ -1,37 +1,50 @@
+<div align="center">
+
 # 🔐 CryptoNexus
 
-## Post-Quantum Cryptography Migration & Crypto-Agility Scanner
+### Post-Quantum Cryptography Migration & Crypto-Agility Scanner
 
-> **Discover the cryptography. Understand the dependencies. Plan the migration. Build for change.**
+**Discover cryptography. Understand dependencies. Prioritize migration. Build for change.**
 
-CryptoNexus is a repository-analysis platform designed to help developers and security teams understand how cryptography is being used inside an application and prepare that application for future post-quantum migration.
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-Local_AI-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Security](https://img.shields.io/badge/Focus-PQC_Migration-8B5CF6?style=for-the-badge)
 
-It scans source code, configuration files, dependencies, protocol settings, and digital certificates, combines deterministic evidence with a locally trained machine-learning model, builds a dependency-aware view of the cryptographic surface, and generates a prioritized migration roadmap.
+<br>
 
-CryptoNexus does **not** claim that scanning a repository proves that the system is quantum-safe. Instead, it provides evidence, relationships, migration guidance, compatibility considerations, and testing recommendations.
+> **A CryptoNexus scan does not prove that a system is quantum-safe.**  
+> CryptoNexus provides evidence-driven visibility, dependency intelligence, and migration guidance.
+
+</div>
 
 ---
 
-# 🚨 The Problem
+# 🚨 Problem
 
-Modern applications use cryptography in many different places.
+Modern software applications use cryptography in many different places.
 
-A project may contain:
+Cryptographic mechanisms may exist inside:
+
+- Source code
+- Configuration files
+- Security libraries
+- Package dependencies
+- TLS settings
+- Cipher suites
+- Digital certificates
+- Internal security wrappers
+- Authentication modules
+
+For example, one project may contain:
 
 ```text
-Application Source Code
-        │
-        ├── RSA / ECC
-        ├── AES
-        ├── SHA-256
-        │
-        ├── Crypto Libraries
-        │
-        ├── Configuration Files
-        │       └── TLS / Cipher Suites
-        │
-        ├── Certificates
-        │       └── RSA / ECC Public Keys
-        │
-        └── Dependencies
-                └── cryptography / crypto-js / node-forge / etc.
+Application
+│
+├── RSA for authentication
+├── AES for encryption
+├── SHA-256 for hashing
+├── TLS for communication
+├── RSA/ECC certificates
+└── Crypto libraries in dependencies
