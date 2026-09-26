@@ -1,74 +1,37 @@
-<div align="center">
-
 # 🔐 CryptoNexus
 
-### Post-Quantum Cryptography Migration & Crypto-Agility Intelligence
+## Post-Quantum Cryptography Migration & Crypto-Agility Scanner
 
-**Discover cryptography. Trace dependencies. Prioritize migration. Build for crypto-agility.**
+> **Discover the cryptography. Understand the dependencies. Plan the migration. Build for change.**
 
-<br/>
+CryptoNexus is a repository-analysis platform designed to help developers and security teams understand how cryptography is being used inside an application and prepare that application for future post-quantum migration.
 
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-Local%20AI-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Security](https://img.shields.io/badge/Focus-PQC%20Migration-8B5CF6?style=for-the-badge)
+It scans source code, configuration files, dependencies, protocol settings, and digital certificates, combines deterministic evidence with a locally trained machine-learning model, builds a dependency-aware view of the cryptographic surface, and generates a prioritized migration roadmap.
 
-<br/>
-
-> **CryptoNexus does not claim that a successful scan proves a system is quantum-safe.**  
-> It provides evidence-driven visibility and migration guidance for post-quantum readiness.
-
-</div>
+CryptoNexus does **not** claim that scanning a repository proves that the system is quantum-safe. Instead, it provides evidence, relationships, migration guidance, compatibility considerations, and testing recommendations.
 
 ---
 
-## Why CryptoNexus?
+# 🚨 The Problem
 
-Modern applications rarely use cryptography in only one place.
+Modern applications use cryptography in many different places.
 
-Cryptographic mechanisms may exist inside:
-
-`source code → configuration files → dependencies → TLS settings → certificates → internal wrappers`
-
-During a transition toward post-quantum cryptography, simply searching for words such as `RSA` or `AES` is not enough.
-
-Teams need to answer four important questions:
-
-> **What cryptography exists?**  
-> **Where is it being used?**  
-> **What depends on it?**  
-> **How should it be migrated safely?**
-
-CryptoNexus is designed around these questions.
-
----
-
-# ⚡ What CryptoNexus Does
+A project may contain:
 
 ```text
-                Repository ZIP
-                     │
-                     ▼
-          ┌───────────────────────┐
-          │ Cryptographic Scanner │
-          └───────────┬───────────┘
-                      │
-          ┌───────────▼────────────┐
-          │ Local AI Classification │
-          └───────────┬────────────┘
-                      │
-          ┌───────────▼────────────┐
-          │ Dependency Intelligence │
-          └───────────┬────────────┘
-                      │
-          ┌───────────▼────────────┐
-          │ Migration Prioritization│
-          └───────────┬────────────┘
-                      │
-          ┌───────────▼────────────┐
-          │ Crypto-Agility Sandbox │
-          └───────────┬────────────┘
-                      │
-                      ▼
-             Migration Report
+Application Source Code
+        │
+        ├── RSA / ECC
+        ├── AES
+        ├── SHA-256
+        │
+        ├── Crypto Libraries
+        │
+        ├── Configuration Files
+        │       └── TLS / Cipher Suites
+        │
+        ├── Certificates
+        │       └── RSA / ECC Public Keys
+        │
+        └── Dependencies
+                └── cryptography / crypto-js / node-forge / etc.
