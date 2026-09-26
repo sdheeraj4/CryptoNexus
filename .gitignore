@@ -1,0 +1,15 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+.env
+.vscode/
+
+# Never commit private cryptographic keys
+*.key
+
+# Temporary / generated files
+*.tmp
+*.log
