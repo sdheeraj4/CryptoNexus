@@ -13,6 +13,7 @@ from app.scanner import Finding, scan_repository
 from app.config_scanner import unique_findings
 from app.metadata_scanner import scan_metadata
 from app.certificate_scanner import CertificateIssue, scan_certificates
+from app.ai.scan import scan_indirect_calls
 
 logger = logging.getLogger(__name__)
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
@@ -137,6 +138,7 @@ def process_upload(upload: UploadFile) -> ScanResult:
             findings.extend(scan_metadata(root, inventory.config_files, inventory.dependency_files))
             certificates, certificate_issues = scan_certificates(root, inventory.certificate_files)
             findings.extend(certificates)
+            findings.extend(scan_indirect_calls(root, inventory.source_files, findings))
             findings = unique_findings(findings)
             logger.info("Repository scan completed: %d findings", len(findings))
             return ScanResult(**inventory.model_dump(), crypto_findings=findings,

@@ -1,5 +1,12 @@
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from pydantic import BaseModel, Field, field_validator
+
+from app.ai.inference import ModelUnavailable, Prediction, predict_crypto_behavior
+from app.analysis import AnalysisRequest, analyze
+from app.sandbox import SandboxRequest, SandboxResult, run_sandbox
 
 from app.errors import register_error_handlers
 from app.logging_config import configure_logging
@@ -51,3 +58,41 @@ def health():
 @app.post("/api/upload", response_model=ScanResult)
 def upload_repository(file: UploadFile = File(...)):
     return process_upload(file)
+
+
+class ClassificationRequest(BaseModel):
+    code: str = Field(min_length=1, max_length=16_000)
+    context: str = Field(default="", max_length=8_000)
+    language: str = Field(default="unknown", max_length=32)
+
+    @field_validator("code")
+    @classmethod
+    def nonempty_code(cls, value):
+        if not value.strip():
+            raise ValueError("code must not be blank")
+        return value
+
+
+@app.post("/api/ai/classify", response_model=Prediction)
+def classify(request: ClassificationRequest):
+    try:
+        return predict_crypto_behavior(request.code, request.context, request.language)
+    except ModelUnavailable as exc:
+        raise HTTPException(503, str(exc)) from exc
+
+
+@app.post("/api/analyze")
+def analyze_repository(file: UploadFile = File(...)):
+    scan = process_upload(file)
+    return analyze(AnalysisRequest.model_validate(scan.model_dump()))
+
+
+@app.post("/api/sandbox/run", response_model=SandboxResult)
+def sandbox(request: SandboxRequest):
+    return run_sandbox(request)
+
+
+# Register after API routes so /docs and /api/* retain their existing handlers.
+FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
+if FRONTEND_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")

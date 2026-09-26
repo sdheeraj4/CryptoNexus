@@ -27,7 +27,7 @@ TOKEN = re.compile(
 
 
 class Finding(BaseModel):
-    type: Literal["algorithm", "library", "protocol", "cipher_suite", "certificate_path", "key_path", "provider", "dependency", "certificate"]
+    type: Literal["algorithm", "library", "protocol", "cipher_suite", "certificate_path", "key_path", "provider", "dependency", "certificate", "ai_behavior"]
     algorithm: str | None = None
     library: str | None = None
     protocol: str | None = None
@@ -37,8 +37,10 @@ class Finding(BaseModel):
     line: int | None
     key_size: int | None = None
     evidence: str
-    evidence_type: Literal["direct"] = "direct"
-    status: Literal["confirmed"] = "confirmed"
+    evidence_type: Literal["direct", "indirect"] = "direct"
+    status: Literal["confirmed", "likely", "uncertain"] = "confirmed"
+    ai_label: str | None = None
+    ai_confidence: float | None = None
     subject: str | None = None
     issuer: str | None = None
     serial_number: str | None = None

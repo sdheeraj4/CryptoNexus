@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B0A0F" />
+    <title>CryptoNexus — PQC Migration Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">
+                    <span class="brand-cross"></span>
+                    <span class="brand-dot"></span>
+                </div>
+                <div>
+                    <div class="brand-name">CryptoNexus</div>
+                    <div class="brand-sub">PQC Migration Intelligence</div>
+                </div>
+            </div>
+
+            <div class="workspace-pill">
+                <span class="live-dot"></span>
+                LOCAL ANALYSIS
+                <span class="pill-spacer"></span>
+                <span class="mono">v2.0</span>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-label">DISCOVER</div>
+                <button class="nav-item active" data-page="scan">
+                    <span class="nav-icon">01</span>
+                    <span>Scan Workspace</span>
+                </button>
+                <button class="nav-item" data-page="inventory">
+                    <span class="nav-icon">02</span>
+                    <span>Inventory</span>
+                </button>
+
+                <div class="nav-label">UNDERSTAND</div>
+                <button class="nav-item" data-page="evidence">
+                    <span class="nav-icon">03</span>
+                    <span>Evidence Explorer</span>
+                </button>
+                <button class="nav-item" data-page="dependencies">
+                    <span class="nav-icon">04</span>
+                    <span>Dependency Map</span>
+                </button>
+                <button class="nav-item" data-page="certificates">
+                    <span class="nav-icon">05</span>
+                    <span>Certificates</span>
+                </button>
+
+                <div class="nav-label">MIGRATE</div>
+                <button class="nav-item" data-page="migration">
+                    <span class="nav-icon">06</span>
+                    <span>Migration Workbench</span>
+                </button>
+
+                <div class="nav-label">VALIDATE</div>
+                <button class="nav-item" data-page="agility">
+                    <span class="nav-icon">08</span>
+                    <span>Crypto-Agility Lab</span>
+                </button>
+
+                <div class="nav-label">DELIVER</div>
+                <button class="nav-item" data-page="reports">
+                    <span class="nav-icon">10</span>
+                    <span>Report Builder</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-note">
+                <div class="note-kicker">IMPORTANT</div>
+                <p>Inventory results are evidence for engineering review. A scan does not prove a system is quantum-safe.</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <div class="eyebrow" id="topEyebrow">SCAN WORKSPACE</div>
+                    <h1 id="pageHeading">Build your cryptographic inventory</h1>
+                </div>
+                <div class="top-actions">
+                    <button class="top-button" id="openScanButton">New scan</button>
+                    <div class="top-meta">
+                        <span class="signal"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="content">
+                <!-- SCAN -->
+                <section class="page active" id="page-scan">
+                    <div class="hero">
+                        <div class="hero-copy">
+                            <div class="tag">REPOSITORY + CONFIG + CERTIFICATE EVIDENCE</div>
+                            <h2>Know your crypto<br><span>before you migrate it.</span></h2>
+                            <p>Build a local inventory of algorithms, libraries, key sizes, certificates and protocol references — then trace the dependencies that make migration non-trivial.</p>
+                        </div>
+
+                        <div class="hero-aside">
+                            <div class="big-index">01</div>
+                            <div class="hero-rule"></div>
+                            <div class="hero-aside-text">
+                                <span>INPUTS</span>
+                                Repository · Configuration · Certificates
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="metric-strip" aria-label="Analysis summary">
+                        <div class="metric"><span>TOTAL FINDINGS</span><b id="sumTotal">0</b></div>
+                        <div class="metric accent-metric"><span>HIGH PRIORITY</span><b id="sumHigh">0</b></div>
+                        <div class="metric"><span>CONFIRMED</span><b id="sumConfirmed">0</b></div>
+                        <div class="metric"><span>LIKELY</span><b id="sumLikely">0</b></div>
+                        <div class="metric"><span>UNCERTAIN</span><b id="sumUncertain">0</b></div>
+                    </div>
+                    <div class="scan-grid">
+                        <div class="panel scan-drop">
+                            <div class="panel-top">
+                                <div>
+                                    <div class="section-kicker">DEFINE SCAN SCOPE</div>
+                                    <h3>Choose a repository ZIP</h3>
+                                </div>
+                                <span class="micro-status" id="selectionStatus">NO INPUT</span>
+                            </div>
+
+                            <div class="dropzone" id="dropzone">
+                                <div class="drop-glyph">◈</div>
+                                <strong>Drop a repository ZIP here</strong>
+                                <span>or choose a ZIP below</span>
+                                <div class="choose-row">
+                                    <button class="choose-card" id="chooseFiles">
+                                        <span class="choose-symbol">▣</span>
+                                        <span>
+                                            <b>Choose ZIP</b>
+                                            <small>Repository archive, up to 20 MiB</small>
+                                        </span>
+                                    </button>
+                                </div>
+                                <small class="hint">Your ZIP is sent to the local CryptoNexus backend. No external AI API is used.</small>
+                            </div>
+
+                            <input id="fileInput" type="file" accept=".zip,application/zip" hidden />
+
+                            <div class="manifest" id="manifest">
+                                <div class="manifest-row"><span>Selected ZIP</span><b id="selectedZip">None selected</b></div>
+                                <div class="manifest-row"><span>Archive size</span><b id="selectedSize">-</b></div>
+                            </div>
+                            <p id="scanMessage" class="request-message" role="status" aria-live="polite">Choose a repository ZIP to begin.</p>
+                            <div class="scan-actions">
+                                <button class="primary-action" id="startScan">
+                                    <span>Analyze repository</span>
+                                    <span>↗</span>
+                                </button>
+                                <button class="quiet-action" id="clearSelection">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="panel pipeline-panel">
+                            <div class="section-kicker">ANALYSIS PIPELINE</div>
+                            <div class="pipeline">
+                                <div class="pipeline-step">
+                                    <span class="pipeline-num">01</span>
+                                    <div><b>Discover</b><small>files & sources</small></div>
+                                    <i>○</i>
+                                </div>
+                                <div class="pipeline-line"></div>
+                                <div class="pipeline-step">
+                                    <span class="pipeline-num">02</span>
+                                    <div><b>Inventory</b><small>mechanisms & keys</small></div>
+                                    <i>○</i>
+                                </div>
+                                <div class="pipeline-line"></div>
+                                <div class="pipeline-step">
+                                    <span class="pipeline-num">03</span>
+                                    <div><b>Correlate</b><small>dependencies</small></div>
+                                    <i>○</i>
+                                </div>
+                                <div class="pipeline-line"></div>
+                                <div class="pipeline-step">
+                                    <span class="pipeline-num">04</span>
+                                    <div><b>Assess</b><small>concern & confidence</small></div>
+                                    <i>○</i>
+                                </div>
+                                <div class="pipeline-line"></div>
+                                <div class="pipeline-step">
+                                    <span class="pipeline-num">05</span>
+                                    <div><b>Plan</b><small>migration & gates</small></div>
+                                    <i>○</i>
+                                </div>
+                            </div>
+
+                            <div class="scope-note">
+                                <span class="scope-mark">!</span>
+                                <div>
+                                    <b>Backend evidence pipeline</b>
+                                    <p>The backend safely extracts the ZIP, scans source/config/dependencies/certificates, applies local AI where relevant, and builds evidence relationships and migration guidance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-footer-callout">
+                        <span class="callout-mark">◆</span>
+                        <div>
+                            <b>Evidence first.</b>
+                            <span>Every finding aims to preserve file + line context and a confidence classification.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- INVENTORY -->
+                <section class="page" id="page-inventory">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">INVENTORY</div>
+                            <h2>Cryptographic mechanisms in view</h2>
+                            <p>Observed references are grouped by mechanism, usage and evidence status.</p>
+                        </div>
+                        <div class="head-metric"><span>LAST SCAN</span><b id="inventoryTimestamp">—</b></div>
+                    </div>
+
+                    <div class="metric-strip">
+                        <div class="metric"><span>CONFIRMED</span><b id="invFiles">0</b></div>
+                        <div class="metric"><span>TOTAL FINDINGS</span><b id="invMechanisms">0</b></div>
+                        <div class="metric"><span>DEPENDENCY LINKS</span><b id="invDeps">0</b></div>
+                        <div class="metric"><span>CERTIFICATES</span><b id="invCerts">0</b></div>
+                        <div class="metric accent-metric"><span>HIGH CONCERN</span><b id="invHigh">0</b></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="table-head">
+                            <span>MECHANISM / TYPE</span><span>FILE / LINE</span><span>USAGE / KEY SIZE</span><span>PRIORITY / CONCERN</span><span>STATUS</span>
+                        </div>
+                        <div id="inventoryRows" class="table-body">
+                            <div class="empty-row">No inventory yet. Run an inventory scan from the Scan Workspace.</div>
+                        </div>
+                    </div>
+
+                    <div class="notice-grid">
+                        <div class="notice notice-amber">
+                            <span>UNCERTAINTY</span>
+                            <p>Likely and uncertain AI findings are kept separate from confirmed evidence so reviewers can decide what requires source-level verification.</p>
+                        </div>
+                        <div class="notice notice-plum">
+                            <span>COMMUNICATION</span>
+                            <p>Observed cryptography is not equivalent to effective system posture. Context, runtime behavior and operational controls matter.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCE -->
+                <section class="page" id="page-evidence">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">EVIDENCE EXPLORER</div>
+                            <h2>Show me why this was flagged</h2>
+                            <p>Source-level evidence is the handoff point between automated detection and engineering review.</p>
+                        </div>
+                    </div>
+
+                    <div class="evidence-layout">
+                        <div class="panel evidence-list" id="evidenceList">
+                            <div class="empty-row">Scan a repository to populate evidence.</div>
+                        </div>
+
+                        <div class="panel evidence-detail" id="evidenceDetail">
+                            <div class="evidence-empty">
+                                <span class="big-glyph">⌁</span>
+                                <h3>Select a finding</h3>
+                                <p>Line-level evidence, usage context and migration notes will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DEPENDENCIES -->
+                <section class="page" id="page-dependencies">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">DEPENDENCY MAP</div>
+                            <h2>Trace mechanism → component → source</h2>
+                            <p>High-level dependency mapping for the selected repository.</p>
+                        </div>
+                    </div>
+
+                    <div class="dependency-stage panel">
+                        <div class="dependency-legend"><span class="ok">Solid: observed relationship</span><span class="warn">Dashed: inferred relationship</span></div>
+                        <div class="dep-canvas" id="dependencyCanvas">
+                            <div class="dep-empty">No dependency data yet.</div>
+                        </div>
+                    </div><div class="dependency-table panel">
+                        <div class="table-head dep-head">
+                            <span>FROM</span><span>TO</span><span>RELATION</span><span>EVIDENCE</span>
+                        </div>
+                        <div id="dependencyRows" class="table-body">
+                            <div class="empty-row">Run a scan to build dependency relationships.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CERTIFICATES -->
+                <section class="page" id="page-certificates">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">CERTIFICATE INVENTORY</div>
+                            <h2>Certificate material deserves its own view</h2>
+                            <p>Recognized certificate files and visible algorithm references are listed here for review.</p>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="table-head cert-head">
+                            <span>FILE / SUBJECT</span><span>ISSUER / SERIAL</span><span>ALGORITHM / KEY SIZE</span><span>SIGNATURE / VALIDITY</span><span>STATUS / PRIORITY</span>
+                        </div>
+                        <div id="certificateRows" class="table-body">
+                            <div class="empty-row">No certificate files detected yet.</div>
+                        </div>
+                    </div>
+
+                    <div class="certificate-note">Certificates are parsed by the backend with cryptography. Path references are listed separately and are not proof that a valid certificate was parsed. Private key contents are never displayed.</div><div class="panel reference-panel"><div class="section-kicker">CERTIFICATE / KEY PATH REFERENCES</div><div id="certificatePaths"></div></div>
+                </section>
+
+                <!-- MIGRATION -->
+                <section class="page" id="page-migration">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">MIGRATION WORKBENCH</div>
+                            <h2>Turn inventory into an ordered checklist</h2>
+                            <p>Priorities are derived from detected concern and evidence confidence — not presented as proof of exploitability.</p>
+                        </div>
+                    </div>
+
+                    <div class="migration-board" id="migrationBoard">
+                        <div class="empty-row">A migration checklist will appear after scanning a project.</div>
+                    </div>
+                </section>
+
+                <!-- HYBRID -->
+
+                <!-- AGILITY -->
+                <section class="page" id="page-agility">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">CRYPTO-AGILITY LAB</div>
+                            <h2>Swap algorithm profiles without rewriting the interface</h2>
+                            <p>Real signing and verification through interchangeable cryptography-backed providers.</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-note"><b>Sandbox demonstrates crypto-agility, not quantum safety.</b> RSA and Ed25519 are not post-quantum algorithms.</div>
+                    <div class="agility-layout">
+                        <div class="panel agility-controls">
+                            <div class="field"><label for="providerSelect">Provider</label><select id="providerSelect"><option value="rsa">RSA</option><option value="ed25519">Ed25519</option></select></div>
+                            <div class="field"><label for="sandboxMessage">Shared test message</label><textarea id="sandboxMessage" rows="4" maxlength="16000">CryptoNexus agility test</textarea></div>
+                            <div class="muted-box">One application-facing operation for both providers: sign(message), then verify(message, signature). Change only the provider; the message is retained.</div>
+                            <button class="primary-action" id="applyProfile"><span>Run sign + verify</span><span>&#8599;</span></button>
+                            <p id="sandboxStatus" class="request-message" role="status" aria-live="polite">Ready to run a local test.</p>
+                        </div>
+                        <div class="panel agility-output">
+                            <div class="diagram-title"><span>SANDBOX OUTPUT</span><span class="chip chip-green">NO KEYS RETURNED</span></div>
+                            <div id="sandboxOutput"><div class="empty-row">Select a provider and run the test.</div></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CI -->
+
+
+                <!-- CRYPTO SURFACE -->
+
+                <!-- DECISION RECORDS -->
+
+                <!-- HISTORY -->
+
+                <!-- REPORTS -->
+                <section class="page" id="page-reports">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">REPORT BUILDER</div>
+                            <h2>Package evidence, risks and validation gates</h2>
+                            <p>Export a machine-readable report from the current local analysis state.</p>
+                        </div>
+                    </div>
+
+                    <div class="report-layout">
+                        <div class="panel report-builder">
+                            <div class="report-checks"><span>Full backend analysis</span><span>Evidence and status</span><span>Dependency graph</span><span>Migration checklist</span><span>Compatibility risks</span><span>Testing steps and limitations</span></div>
+                            <button class="primary-action" id="generateReport">
+                                <span>Download Report</span>
+                                <span>↗</span>
+                            </button>
+                        </div>
+
+                        <div class="panel report-preview">
+                            <div class="diagram-title">
+                                <span>REPORT PREVIEW</span>
+                                <span class="chip chip-plum">LOCAL DATA</span>
+                            </div>
+                            <div class="preview-grid">
+                                <div><span>CONFIRMED</span><b id="repFiles">0</b></div>
+                                <div><span>FINDINGS</span><b id="repFindings">0</b></div>
+                                <div><span>HIGH CONCERN</span><b id="repHigh">0</b></div>
+                                <div><span>CERTIFICATES</span><b id="repCerts">0</b></div>
+                            </div>
+                            <div class="report-warning"><b>Quantum-safety disclaimer</b><p id="reportDisclaimer">A CryptoNexus scan does not prove that a system is quantum-safe.</p></div>
+                        </div>
+                    </div>
+                    <div id="reportContent" class="report-content"></div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "accuracy": 0.75,
+  "macro_precision": 0.7523809523809524,
+  "macro_recall": 0.7638888888888888,
+  "macro_f1": 0.7465250798584132,
+  "random_seed": 42,
+  "train_records": 216,
+  "test_records": 80,
+  "split": "stratified family holdout; related variants/translations stay together",
+  "test_families": [
+    "crypto_wrapper-03",
+    "decryption-03",
+    "digital_signature-04",
+    "encryption-04",
+    "hashing-01",
+    "key_exchange-04",
+    "key_generation-02",
+    "non_crypto-02",
+    "non_crypto-04",
+    "tls_certificate-04"
+  ],
+  "saved_model_training_records": 296
+}

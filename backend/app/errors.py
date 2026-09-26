@@ -17,7 +17,7 @@ def register_error_handlers(app: FastAPI) -> None:
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(request: Request, exc: RequestValidationError):
-        return JSONResponse({"error": "Invalid request; provide a ZIP in the 'file' field."},
+        return JSONResponse({"error": "Invalid request; check the required fields and input limits."},
                             status_code=422)
 
     @app.exception_handler(Exception)
